@@ -120,10 +120,11 @@ class LIBRISPEECH(Dataset):
                     f"Dataset not found at {self._path}. Please set `download=True` to download the dataset."
                 )
                 
-        mask = np.zeros(len(arr), dtype=bool)
-        mask[_MASK] = True
+        
 
         self._walker = sorted(str(p.stem) for p in Path(self._path).glob("*/*/*" + self._ext_audio))
+        mask = np.zeros(len(self._walker), dtype=bool)
+        mask[_MASKS] = True
         self._walker = np.array(self._walker)[mask]
         
 
