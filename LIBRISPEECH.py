@@ -124,7 +124,7 @@ class LIBRISPEECH(Dataset):
         mask[_MASK] = True
 
         self._walker = sorted(str(p.stem) for p in Path(self._path).glob("*/*/*" + self._ext_audio))
-        self._walker = self._walker[mask]
+        self._walker = np.array(self._walker)[mask]
         
 
     def get_metadata(self, n: int) -> Tuple[Tensor, int, str, int, int, int]:
